@@ -7,7 +7,7 @@ void UndirectedGraph::addEdge(int u, int v) {
     adjacencyList[v].insert(u);
 }
 
-const std::unordered_set<int>& UndirectedGraph::getNeighbors(int vertex) const {
+const unordered_set<int>& UndirectedGraph::getNeighbors(int vertex) const {
     return adjacencyList[vertex];
 }
 
@@ -16,12 +16,12 @@ int UndirectedGraph::getNumVertices() const {
 }
 
 UndirectedShortestPathFinder::UndirectedShortestPathFinder(const UndirectedGraph& graph, int start)
-    : distances(graph.getNumVertices(), std::numeric_limits<int>::max()) {
+    : distances(graph.getNumVertices(), numeric_limits<int>::max()) {
     bfs(graph, start);
 }
 
 void UndirectedShortestPathFinder::bfs(const UndirectedGraph& graph, int start) {
-    std::queue<int> q;
+    queue<int> q;
     q.push(start);
     distances[start] = 0;
 
@@ -30,7 +30,7 @@ void UndirectedShortestPathFinder::bfs(const UndirectedGraph& graph, int start) 
         q.pop();
 
         for (int neighbor : graph.getNeighbors(current)) {
-            if (distances[neighbor] == std::numeric_limits<int>::max()) {
+            if (distances[neighbor] == numeric_limits<int>::max()) {
                 distances[neighbor] = distances[current] + 1;
                 q.push(neighbor);
             }
@@ -38,6 +38,6 @@ void UndirectedShortestPathFinder::bfs(const UndirectedGraph& graph, int start) 
     }
 } 
 
-const std::vector<int>& UndirectedShortestPathFinder::getDistances() const {
+const vector<int>& UndirectedShortestPathFinder::getDistances() const {
     return distances;
 }
