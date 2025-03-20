@@ -30,7 +30,7 @@ jobs:
         run: |
           mkdir -p build
           cd build
-          cmake ..
+          cmake ../vkMap   # Указываем путь к CMakeLists.txt
           make
 
       - name: Run Tests
