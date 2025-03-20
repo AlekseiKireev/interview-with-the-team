@@ -1,4 +1,3 @@
-/*
 #include <iostream>
 #include <fstream>
 #include "graph.h"
@@ -28,4 +27,3 @@ int main() {
 
     return 0;
 }
-*/
