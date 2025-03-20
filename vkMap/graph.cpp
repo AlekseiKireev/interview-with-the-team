@@ -12,7 +12,7 @@ const std::vector<int>& UndirectedGraph::getNeighbors(int vertex) const {
 }
 
 int UndirectedGraph::getNumVertices() const {
-    return static_cast<int>(adjacencyList.size());
+    return adjacencyList.size();
 }
 
 UndirectedShortestPathFinder::UndirectedShortestPathFinder(const UndirectedGraph& graph, int start)
