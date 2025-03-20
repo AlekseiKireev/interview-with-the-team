@@ -1,24 +1,39 @@
-cmake_minimum_required(VERSION 3.10)
-project(GraphProject)
+name: C++ CI
 
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED True)
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
-# Добавляем исходные файлы
-add_library(graph graph.cpp)
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
 
-# Исполняемый файл для основной программы
-add_executable(main main.cpp)
-target_link_libraries(main graph)
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-# Google Test
-enable_testing()
-find_package(GTest REQUIRED)
-include_directories(${GTEST_INCLUDE_DIRS})
+      - name: Install dependencies
+        run: sudo apt-get update && sudo apt-get install -y cmake g++ libgtest-dev
 
-# Тесты
-add_executable(test_graph test_graph.cpp)
-target_link_libraries(test_graph graph GTest::GTest GTest::Main)
+      - name: Build Google Test
+        run: |
+          cd /usr/src/gtest
+          sudo cmake CMakeLists.txt
+          sudo make
+          sudo cp lib/*.a /usr/lib
 
-# Добавляем команду для запуска тестов
-add_test(NAME RunTests COMMAND test_graph)
+      - name: Configure and Build
+        run: |
+          mkdir -p build
+          cd build
+          cmake ..
+          make
+
+      - name: Run Tests
+        run: |
+          cd build
+          ctest --output-on-failure

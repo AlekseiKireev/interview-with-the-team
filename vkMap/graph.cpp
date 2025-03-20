@@ -3,11 +3,11 @@
 UndirectedGraph::UndirectedGraph(int numVertices) : adjacencyList(numVertices) {}
 
 void UndirectedGraph::addEdge(int u, int v) {
-    adjacencyList[u].push_back(v);
-    adjacencyList[v].push_back(u);
+    adjacencyList[u].insert(v);
+    adjacencyList[v].insert(u);
 }
 
-const std::vector<int>& UndirectedGraph::getNeighbors(int vertex) const {
+const std::unordered_set<int>& UndirectedGraph::getNeighbors(int vertex) const {
     return adjacencyList[vertex];
 }
 
@@ -36,7 +36,7 @@ void UndirectedShortestPathFinder::bfs(const UndirectedGraph& graph, int start) 
             }
         }
     }
-}
+} 
 
 const std::vector<int>& UndirectedShortestPathFinder::getDistances() const {
     return distances;

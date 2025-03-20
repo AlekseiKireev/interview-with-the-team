@@ -6,23 +6,24 @@
 #include <queue>
 #include <limits>
 #include <memory>
+#include <unordered_set>
 
 class Graph {
 public:
     virtual void addEdge(int u, int v) = 0;
-    virtual const std::vector<int>& getNeighbors(int vertex) const = 0;
+    virtual const std::unordered_set<int>& getNeighbors(int vertex) const = 0;
     virtual int getNumVertices() const = 0;
     virtual ~Graph() = default;
 };
 
 class UndirectedGraph : public Graph {
 private:
-    std::vector<std::vector<int>> adjacencyList;
+    std::vector<std::unordered_set<int>> adjacencyList;
 
 public:
     explicit UndirectedGraph(int numVertices);
     void addEdge(int u, int v) override;
-    const std::vector<int>& getNeighbors(int vertex) const override;
+    const std::unordered_set<int>& getNeighbors(int vertex) const override;
     int getNumVertices() const override;
 };
 
