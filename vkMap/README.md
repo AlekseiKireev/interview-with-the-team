@@ -39,5 +39,5 @@
     * есть соответстсвующий файл, необходим для interview-with-the-team/.github/workflows/VkMapTest.yml
 
 * Умение работать с CI/CD.
-    * Обратите внимание, что код протестирован в github actions
+    * Обратите внимание, что код протестирован в github actions, что эквивалентно CI
 
