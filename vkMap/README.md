@@ -1,4 +1,4 @@
-Искомая реализация: 
+Искомая реализация функии, положив, что данные считаны: 
 
     void UndirectedShortestPathFinder::bfs(const UndirectedGraph& graph, int start) {
         queue<int> q;
